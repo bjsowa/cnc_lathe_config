@@ -1,13 +1,15 @@
 loadusr -W hal_input -KRAL WAILLY
-loadrt joyhandle count=2
-loadrt offset count=2
+loadrt joyhandle count=3
+loadrt offset count=3
 
 addf joyhandle.0 servo-thread
 addf joyhandle.1 servo-thread
+addf joyhandle.2 servo-thread
 addf offset.0.update-output servo-thread
 addf offset.1.update-output servo-thread
+addf offset.2.update-output servo-thread
 
-setp halui.jog-speed 1000
+setp halui.jog-speed 10000
 setp halui.jog-deadband 0.
 
 # X AXIS
@@ -15,7 +17,7 @@ setp offset.0.offset 0.40
 
 setp joyhandle.0.power 2.
 setp joyhandle.0.deadband 0.03
-setp joyhandle.0.scale 1.0
+setp joyhandle.0.scale 5.0
 setp joyhandle.0.inverse 0
 
 net joyX input.0.abs-y-position => offset.0.in
@@ -27,9 +29,22 @@ setp offset.1.offset 0.40
 
 setp joyhandle.1.power 2.
 setp joyhandle.1.deadband 0.03
-setp joyhandle.1.scale -1.0
+setp joyhandle.1.scale -5.0
 setp joyhandle.1.inverse 0
 
 net joyZ input.0.abs-x-position => offset.1.in
 net velZ offset.1.out => joyhandle.1.in
 net velZout joyhandle.1.out => halui.jog.2.analog
+
+# C AXIS
+setp offset.2.offset 0.37
+
+setp joyhandle.2.power 2.
+setp joyhandle.2.deadband 0.03
+setp joyhandle.2.scale 5.0
+setp joyhandle.2.inverse 0
+
+net joyC input.0.abs-rz-position => offset.2.in
+net velC offset.2.out => joyhandle.2.in
+net velCout joyhandle.2.out => halui.jog.5.analog
+
