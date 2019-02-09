@@ -1,5 +1,5 @@
 
-loadusr -W xhc-hb04 -I xhc-hb04-layout.ini -H
+loadusr -W xhc-hb04 -I xhc-hb04-layout.cfg -H
 
 # Home button
 net home halui.home-all <= xhc-hb04.button-home
@@ -22,8 +22,7 @@ net jog-y axis.5.jog-enable <= xhc-hb04.jog.enable-y
 net jog-z axis.2.jog-enable <= xhc-hb04.jog.enable-z
 net jog-a axis.3.jog-enable <= xhc-hb04.jog.enable-a
 net jog-scale xhc-hb04.jog.scale => axis.0.jog-scale axis.5.jog-scale axis.2.jog-scale axis.3.jog-scale
-net jog-counts xhc-hb04.jog.counts => axis.0.jog-counts axis.5.jog-counts axis.3.jog-counts
-net jog-counts-neg xhc-hb04.jog.counts-neg => axis.2.jog-counts
+net jog-counts xhc-hb04.jog.counts => axis.0.jog-counts axis.5.jog-counts axis.2.jog-counts axis.3.jog-counts
 net jog-speed halui.jog-speed <= halui.max-velocity.value
 
 # Wheel for feedrate and spindle
@@ -37,6 +36,8 @@ net jog-counts => halui.spindle-override.counts
 net jog-spindle halui.spindle-override.count-enable <= xhc-hb04.jog.enable-spindle-override
 net jog-spindle2 halui.spindle-override.value => xhc-hb04.spindle-override
 net spindle-rps motion.spindle-speed-cmd-rps => xhc-hb04.spindle-rps
+
+net step-up xhc-hb04.button-step => xhc-hb04.stepsize-up
 
 # RESET/ESTOP button
 net estop xhc-hb04.button-reset => halui.estop.activate
