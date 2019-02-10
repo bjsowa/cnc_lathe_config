@@ -21,9 +21,9 @@ addf pwmgen.update servo-thread
 net spindle-cmd-rpm => pwmgen.0.value
 net spindle-on <= motion.spindle-on => pwmgen.0.enable
 net spindle-pwm <= pwmgen.0.pwm
-setp pwmgen.0.pwm-freq 100.0
-setp pwmgen.0.scale 1166.66666667
-setp pwmgen.0.offset 0.114285714286
+setp pwmgen.0.pwm-freq 2000.0
+setp pwmgen.0.scale 1000.0
+setp pwmgen.0.offset 0.0
 setp pwmgen.0.dither-pwm true
 net spindle-cmd-rpm     <= motion.spindle-speed-out
 net spindle-cmd-rpm-abs <= motion.spindle-speed-out-abs
@@ -41,11 +41,14 @@ setp parport.0.pin-05-out-invert 1
 net cdir            => parport.0.pin-05-out
 net zstep           => parport.0.pin-06-out
 net zdir            => parport.0.pin-07-out
-net spindle-cw      => parport.0.pin-14-out
-net spindle-pwm     => parport.0.pin-16-out
+net spindle-cw      => parport.0.pin-08-out
+net spindle-pwm     => parport.0.pin-09-out
 net xenable         => parport.0.pin-17-out
-net max-home-z      <= parport.0.pin-10-in
+net min-home-z      <= parport.0.pin-10-in
+net max-z 			<= parport.0.pin-11-in
 net max-home-x      <= parport.0.pin-15-in
+net max-home-c		<= parport.0.pin-12-in
+net estop-ext 		<= parport.0.pin-13-in-not
 
 setp stepgen.0.position-scale [AXIS_0]SCALE
 setp stepgen.0.steplen 1
@@ -72,12 +75,13 @@ net zpos-fb stepgen.1.position-fb => axis.2.motor-pos-fb
 net zstep <= stepgen.1.step
 net zdir <= stepgen.1.dir
 net zenable axis.2.amp-enable-out => stepgen.1.enable
-net max-home-z => axis.2.home-sw-in
-net max-home-z => axis.2.pos-lim-sw-in
+net min-home-z => axis.2.home-sw-in
+net min-home-z => axis.2.neg-lim-sw-in
+net max-z => axis.2.pos-lim-sw-in
 
 setp stepgen.2.position-scale [AXIS_5]SCALE
 setp stepgen.2.steplen 1
-setp stepgen.2.stepspace 0
+setp stepgen.2.stepspace 1
 setp stepgen.2.dirhold 115000
 setp stepgen.2.dirsetup 115000
 setp stepgen.2.maxaccel [AXIS_5]STEPGEN_MAXACCEL
@@ -90,7 +94,7 @@ net max-home-c => axis.5.home-sw-in
 net max-home-c => axis.5.pos-lim-sw-in
 
 net estop-out <= iocontrol.0.user-enable-out
-net estop-out => iocontrol.0.emc-enable-in
+net estop-ext => iocontrol.0.emc-enable-in
 
 loadusr -W hal_manualtoolchange
 net tool-change iocontrol.0.tool-change => hal_manualtoolchange.change
