@@ -62,3 +62,19 @@ net pause flipflop_pause.out => halui.program.pause
 net run flipflop_run.out => halui.program.run
 
 net step xhc-hb04.button-rewind => halui.program.step
+
+# Velocity mode toggle
+
+loadrt toggle names=vel-mode-toggle
+
+addf vel-mode-toggle servo-thread
+
+net button-mode xhc-hb04.button-mode => vel-mode-toggle.in
+net vel-mode vel-mode-toggle.out => axis.0.jog-vel-mode axis.2.jog-vel-mode axis.5.jog-vel-mode
+
+# mdi commands
+
+net x0 xhc-hb04.button-macro-1 => halui.mdi-command-00
+net c0 xhc-hb04.button-macro-2 => halui.mdi-command-01
+net z0 xhc-hb04.button-macro-3 => halui.mdi-command-02
+net origin xhc-hb04.button-goto-zero => halui.mdi-command-03
