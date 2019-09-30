@@ -6,23 +6,23 @@ net home halui.home-all <= xhc-hb04.button-home
 
 # Absolute position LCD
 net pos-x halui.axis.0.pos-feedback => xhc-hb04.x.pos-absolute
-net pos-y halui.axis.5.pos-feedback => xhc-hb04.y.pos-absolute
+net pos-y halui.axis.1.pos-feedback => xhc-hb04.y.pos-absolute
 net pos-z halui.axis.2.pos-feedback => xhc-hb04.z.pos-absolute
 net pos-a halui.axis.3.pos-feedback => xhc-hb04.a.pos-absolute
 
 # Relative position LCD
 net pos-rel-x halui.axis.0.pos-relative => xhc-hb04.x.pos-relative
-net pos-rel-y halui.axis.5.pos-relative => xhc-hb04.y.pos-relative
+net pos-rel-y halui.axis.1.pos-relative => xhc-hb04.y.pos-relative
 net pos-rel-z halui.axis.2.pos-relative => xhc-hb04.z.pos-relative
 net pos-rel-a halui.axis.3.pos-relative => xhc-hb04.a.pos-relative
 
 # Jog wheel and axis selection button
 net jog-x axis.0.jog-enable <= xhc-hb04.jog.enable-x
-net jog-y axis.5.jog-enable <= xhc-hb04.jog.enable-y
+net jog-y axis.1.jog-enable <= xhc-hb04.jog.enable-y
 net jog-z axis.2.jog-enable <= xhc-hb04.jog.enable-z
 net jog-a axis.3.jog-enable <= xhc-hb04.jog.enable-a
-net jog-scale xhc-hb04.jog.scale => axis.0.jog-scale axis.5.jog-scale axis.2.jog-scale axis.3.jog-scale
-net jog-counts xhc-hb04.jog.counts => axis.0.jog-counts axis.5.jog-counts axis.2.jog-counts axis.3.jog-counts
+net jog-scale xhc-hb04.jog.scale => axis.0.jog-scale axis.1.jog-scale axis.2.jog-scale axis.3.jog-scale
+net jog-counts xhc-hb04.jog.counts => axis.0.jog-counts axis.1.jog-counts axis.2.jog-counts axis.3.jog-counts
 net jog-speed halui.jog-speed <= halui.max-velocity.value
 
 # Wheel for feedrate and spindle
@@ -70,7 +70,7 @@ loadrt toggle names=vel-mode-toggle
 addf vel-mode-toggle servo-thread
 
 net button-mode xhc-hb04.button-mode => vel-mode-toggle.in
-net vel-mode vel-mode-toggle.out => axis.0.jog-vel-mode axis.2.jog-vel-mode axis.5.jog-vel-mode
+net vel-mode vel-mode-toggle.out => axis.0.jog-vel-mode axis.1.jog-vel-mode axis.2.jog-vel-mode axis.3.jog-vel-mode
 
 # mdi commands
 
