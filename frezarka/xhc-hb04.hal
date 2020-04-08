@@ -44,8 +44,6 @@ net estop xhc-hb04.button-reset => halui.estop.activate
 
 # Program control
 
-loadrt flipflop names=flipflop_resume,flipflop_pause,flipflop_run
-
 addf flipflop_resume servo-thread
 addf flipflop_pause servo-thread
 addf flipflop_run servo-thread
