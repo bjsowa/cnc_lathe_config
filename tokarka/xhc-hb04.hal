@@ -1,4 +1,3 @@
-
 loadusr -W xhc-hb04 -I xhc-hb04-layout.cfg -H
 
 # Home button
@@ -44,8 +43,6 @@ net estop xhc-hb04.button-reset => halui.estop.activate
 
 # Program control
 
-loadrt flipflop names=flipflop_resume,flipflop_pause,flipflop_run
-
 addf flipflop_resume servo-thread
 addf flipflop_pause servo-thread
 addf flipflop_run servo-thread
@@ -65,8 +62,6 @@ net step xhc-hb04.button-rewind => halui.program.step
 
 # Velocity mode toggle
 
-loadrt toggle names=vel-mode-toggle
-
 addf vel-mode-toggle servo-thread
 
 net button-mode xhc-hb04.button-mode => vel-mode-toggle.in
@@ -78,3 +73,5 @@ net x0 xhc-hb04.button-macro-1 => halui.mdi-command-00
 net c0 xhc-hb04.button-macro-2 => halui.mdi-command-01
 net z0 xhc-hb04.button-macro-3 => halui.mdi-command-02
 net origin xhc-hb04.button-goto-zero => halui.mdi-command-03
+net tool1 xhc-hb04.button-macro-6 => halui.mdi-command-04
+net tool2 xhc-hb04.button-macro-7 => halui.mdi-command-05

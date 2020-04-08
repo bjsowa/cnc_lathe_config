@@ -1,0 +1,17 @@
+addf conv-s32-bit.0 servo-thread
+addf flipflop_tool_change servo-thread
+addf timedelay.0 servo-thread
+
+setp conv-s32-bit.0.clamp true
+setp timedelay.0.on-delay 1.0
+setp timedelay.0.off-delay 0.0
+setp parport.0.pin-17-out-invert 1
+
+net tool-prepare-loopback iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
+net tool-change <= iocontrol.0.tool-change 
+net tool-number iocontrol.0.tool-prep-pocket => conv-s32-bit.0.in
+net tool-select conv-s32-bit.0.out => flipflop_tool_change.data
+net tool-change => flipflop_tool_change.clk
+net tool-change => timedelay.0.in
+net tool-changer-relay flipflop_tool_change.out => parport.0.pin-17-out
+net tool-changed timedelay.0.out => iocontrol.0.tool-changed
