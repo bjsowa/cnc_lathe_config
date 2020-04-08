@@ -63,8 +63,6 @@ net step xhc-hb04.button-rewind => halui.program.step
 
 # Velocity mode toggle
 
-loadrt toggle names=vel-mode-toggle
-
 addf vel-mode-toggle servo-thread
 
 net button-mode xhc-hb04.button-mode => vel-mode-toggle.in

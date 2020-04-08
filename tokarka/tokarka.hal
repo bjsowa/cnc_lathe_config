@@ -23,6 +23,8 @@ net spindle-cmd-rps-abs <= motion.spindle-speed-out-rps-abs
 net spindle-at-speed    => motion.spindle-at-speed
 net spindle-cw <= motion.spindle-forward
 
+setp parport.0.pin-16-out true
+
 net xstep           => parport.0.pin-04-out
 setp parport.0.pin-05-out-invert 1
 net xdir            => parport.0.pin-05-out
