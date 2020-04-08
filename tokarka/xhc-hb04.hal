@@ -17,11 +17,10 @@ net pos-rel-a halui.axis.3.pos-relative => xhc-hb04.a.pos-relative
 
 # Jog wheel and axis selection button
 net jog-x axis.0.jog-enable <= xhc-hb04.jog.enable-x
-net jog-y axis.5.jog-enable <= xhc-hb04.jog.enable-y
 net jog-z axis.2.jog-enable <= xhc-hb04.jog.enable-z
-net jog-a axis.3.jog-enable <= xhc-hb04.jog.enable-a
-net jog-scale xhc-hb04.jog.scale => axis.0.jog-scale axis.5.jog-scale axis.2.jog-scale axis.3.jog-scale
-net jog-counts xhc-hb04.jog.counts => axis.0.jog-counts axis.5.jog-counts axis.2.jog-counts axis.3.jog-counts
+net jog-a axis.5.jog-enable <= xhc-hb04.jog.enable-a
+net jog-scale xhc-hb04.jog.scale => axis.0.jog-scale axis.2.jog-scale axis.5.jog-scale
+net jog-counts xhc-hb04.jog.counts => axis.0.jog-counts axis.2.jog-counts axis.5.jog-counts
 net jog-speed halui.jog-speed <= halui.max-velocity.value
 
 # Wheel for feedrate and spindle
